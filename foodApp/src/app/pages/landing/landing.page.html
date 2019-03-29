@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      NaNFood
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-img src="/assets/1.png"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>NaN Food</ion-card-subtitle>
+      <ion-card-title>Manger,Quand,Où et Comme vous le voulez</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Voir tous les restaurants disponibles,leur menu,sans vous deplacez.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-slides [options]="sliderConfig">
+    <ion-slide *ngFor="let c of resto">
+      <ion-card class="welcome-card">
+        <ion-img src="{{ c.image_resto }}"></ion-img>
+        <ion-card-header>
+          <ion-card-subtitle>{{ c.commune_resto }}</ion-card-subtitle>
+          <ion-card-title>{{ c.nom_resto }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ c.description_resto }}</p>
+        </ion-card-content>
+      </ion-card>
+     </ion-slide> 
+  </ion-slides>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" expand="full" shape="round" fill="outline" (click)="login()">Connexion</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="primary" expand="full" shape="round" fill="outline" color="danger" (click)="register()">Inscription</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

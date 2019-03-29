@@ -1,0 +1,196 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Backend NaNFood </title>
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">NaN Food</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Acceuil <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Utilisateur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/restos">Restaurants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/menu">Menu</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <h2>Liste des Restaurants</h2>
+        <br>
+        <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Ajouter</button>
+        <br><br>
+        <table class="table table-striped" id="mytable">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Commune</th>
+                    <th>Site web</th>
+                    <th>Contact</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each results}}
+                <tr>
+                    <td>{{ nom_resto }}</td>
+                    <td>{{ commune_resto }}</td>
+                    <td>{{ lien_resto }}</td>
+                    <td>{{ contact_resto }}</td>
+                    <td>{{ description_resto }}</td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ id_resto }}"
+                            data-name="{{ nom_resto }}" data-prix="{{ commune_resto }}" data-email="{{ contact_resto }}">Editer</a>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-danger delete"
+                            data-id="{{ id_resto }}">Supprimer</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add New Product Modal-->
+    <form action="/save/resto" method="post">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter Un restaurant </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="fName" class="form-control" placeholder="Votre Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lName" class="form-control" placeholder="Votre Prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Votre Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Votre Mot de passe"
+                                required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Edit Product Modal-->
+    <form action="/update/resto" method="post">
+        <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editer Un Utilisateur </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" name="fName" class="form-control fName" placeholder=" Nom " required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="lName" class="form-control lName" placeholder="Prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" class="id">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Delete Product Modal-->
+    <form id="add-row-form" action="/delete/resto" method="post">
+        <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Suppression</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <strong>Voulez vous vraiment supprimé ?</strong>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" class="form-control product_id2" required>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermé</button>
+                        <button type="submit" class="btn btn-success">Supprimé</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="/assets/js/jquery-3.3.1.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            //showing data to modal for edit record
+            $('#mytable').on('click', '.edit', function () {
+                var id = $(this).data('id');
+                var fName = $(this).data('fName');
+                var lName = $(this).data('lName');
+                var email = $(this).data('email');
+                var password = $(this).data('password');
+                $('#EditModal').modal('show');
+                $('.fName').val(fName);
+                $('.lName').val(lName);
+                $('.email').val(email);
+                $('.id').val(id);
+            });
+
+            //showing modal for delete record
+            $('#mytable').on('click', '.delete', function () {
+
+                var id = $(this).data('id');
+
+                $('#DeleteModal').modal('show');
+                $('.product_id2').val(id);
+            });
+
+        });
+    </script>
+</body>
+
+</html>

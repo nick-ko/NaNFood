@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title text-center>Menu : {{ restaurant }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let m of menus">
+    <ion-item lines="inset">
+      <ion-avatar slot="start">
+        <img src="{{m.image_menu}}">
+      </ion-avatar>
+      {{ m.nom_menu }}
+      <ion-label slot="end" text-right> {{ m.prix }} FCFA </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

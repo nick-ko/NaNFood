@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button color="light" (click)="dismissLogin()">X</ion-button>
+    <ion-title text-center>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form #form="ngForm"  method="post">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="user.email" type="email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mot de Passe</ion-label>
+      <ion-input [(ngModel)]="user.password" type="password" name="password" required></ion-input>
+    </ion-item>
+
+    <br>
+    <ion-button (click)="log()" color="primary" shape="round" expand="full"  fill="outline" color="primary">Connexion</ion-button>
+  </form>
+  <p text-center color="primary">Vous avez pas de compte ?</p>
+  <ion-button color="danger" shape="round" fill="outline" expand="full" color="danger" (click)="registerModal()">S'inscrire</ion-button>
+</ion-content>

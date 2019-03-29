@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="card-background-page">
+
+  <div *ngIf="user != undefined">
+
+    Welcome {{ user["first_name"]  }} {{ user["last_name"]  }}
+
+  </div>
+
+  <div *ngFor="let r of restau" class="commune-block">
+      <ion-card>
+        <ion-img src="{{ r.image_resto }}"></ion-img>
+        <ion-card-subtitle class="card-title" color="dark">{{ r.nom_resto }}</ion-card-subtitle>
+        <ion-card-title class="card-subtitle" color="dark">{{ r.commune_resto }}</ion-card-title>
+        <ion-button shape="round" expand="full" fill="outline" (click)="go( r.id_resto)">détail</ion-button>
+      </ion-card>
+  </div>
+  
+</ion-content>

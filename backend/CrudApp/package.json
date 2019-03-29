@@ -1,0 +1,25 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "Crud Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Nick Dev",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "hbs": "^4.0.3",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.10",
+    "twig": "^1.13.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1"
+  }
+}

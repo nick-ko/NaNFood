@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Chercher un resto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar
+     [(ngModel)]="searchTerm"
+      (ionChange)="setFilteredItems()"></ion-searchbar>
+    
+    <ion-list *ngFor="let c of resto">
+      <ion-item (click)="go(c.id_resto)">
+        <ion-label>{{c.nom_resto}} - {{c.commune_resto}}</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>
